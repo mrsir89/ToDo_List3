@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- java.sql.Date로 Type을 설정하면 출력형식이 yyyy-mm-dd로 출력된다
+	 java.util.Date로 Type을 설정하면 외국날짜 형식으로 출력된다
+	 그래서 java.sql.Date로 설정해서 값을 받아온 후
+	 java.util.Date로 변환해서 사용함  -->
+<mapper namespace="spms.dao.ProjectDao">
+	<resultMap type="project" id="projectResultMap">
+	<id column="PNO" property="no"/>
+		<result column = "PNAME" property="title"/>
+		<result column = "CONTENT" property="content"/>
+		<result column = "STA_DATE" property="startDate" javaType="java.sql.Date"/>
+		<result column = "END_DATE" property="endDate" javaType="java.sql.Date"/>
+		<result column = "STATE" property = "state"/>
+		<result column = "CRE_DATE" property = "createdDate" javaType="java.sql.Date"/>
+		<result column = "TAGS" property = "tags"/>
+	</resultMap>
+	
+	
+	<!-- 동적SQL -->
+	<select id="selectList" parameterType="map" resultMap = "projectResultMap">
+		select PNO, PNAME, STA_DATE, END_DATE, STATE
+		from PROJECTS
+		order by
+		<choose>
+			<when test="orderCond=='TITLE_ASC'">PNAME asc</when>
+			<when test="orderCond=='TITLE_DESC'">PNAME desc</when>
+			<when test="orderCond=='STARTDATE_ASC'">STA_DATE asc</when>
+			<when test="orderCond=='STARTDATE_DESC'">STA_DATE desc</when>
+			<when test="orderCond=='ENDDATE_ASC'">END_DATE asc</when>
+			<when test="orderCond=='ENDDATE_DESC'">END_DATE desc</when>
+			<when test="orderCond=='STATE_ASC'">STATE asc</when>
+			<when test="orderCond=='STATE_DESC'">STATE desc</when>
+			<when test="orderCond=='PNO_ASC'">PNO asc</when>
+			<otherwise>PNO desc</otherwise><!--특별하게 값을 넘기지 않으면, 조건이 없으면  -->
+		</choose>
+	</select>
+
+	
+	
+	<!-- project => spms.vo.Project의 별명
+		 title, content.... 은 프로퍼티
+		 프로퍼티란 ?  getter와 setter에서 get, set만 제외한 이름
+		 title => getTitle()에서 get을 제외한 이름
+		 content => getContent()에서 get을 제외하고 수문자로 변경한 이름
+	 -->
+	<insert id="insert" parameterType = "project">
+		insert into PROJECTS(PNAME, CONTENT, STA_DATE, END_DATE, STATE, CRE_DATE, TAGS)
+		values (#{title},#{content},#{startDate},#{endDate},0,now(),#{tags})
+	</insert>
+	
+	
+	
+	<select id="selectOne" parameterType="int" resultMap="projectResultMap">
+		select PNO, PNAME, CONTENT, STA_DATE, END_DATE, STATE, TAGS
+		from PROJECTS
+		where PNO=#{value}<!-- int라는 파라미터값이 넘어감  -->
+	</select>
+	
+	
+	<!-- 하나씩 하려면 id가 엄청나게 많아짐(경우의 수가 많음) -> 동적으로 바뀔 대상이 된다 -->
+	<update id="update" parameterType="map">
+		update PROJECTS set
+		<set>
+			<if test="title!=null">PNAME=#{title},</if>
+			<if test="content!=null">CONTENT=#{content},</if>
+			<if test="startDate!=null">STA_DATE=#{startDate},</if>
+			<if test="endDate!=null">END_DATE=#{endDate},</if>
+			<if test="state!=null">STATE=#{state},</if>
+			<if test="tags!=null">TAGS=#{tags}</if>
+		</set>
+		where PNO=#{no}
+	</update>
+	
+	
+	
+	<delete id="delete" parameterType="int">
+		delete from PROJECTS
+		where PNO=#{value}
+	</delete>
+	
+</mapper>
+
+
+
