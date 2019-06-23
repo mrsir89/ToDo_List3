@@ -3,7 +3,7 @@ package com.example.app;
 import java.util.HashMap;
 import java.util.List;
 
-import spms.vo.Project;
+import com.example.app.Project;
 
 public interface ProjectDao {
   List<Project> selectList(HashMap<String, Object> paramMap) throws Exception;

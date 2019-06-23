@@ -2,10 +2,10 @@ package com.example.app;
 
 import java.util.Map;
 
-import spms.annotation.Component;
-import spms.bind.DataBinding;
-import spms.dao.MemberDao;
-import spms.vo.Member;
+import com.example.app.Component;
+import com.example.app.DataBinding;
+import com.example.app.MemberDao;
+import com.example.app.Member;
 
 // Annotation 적용
 @Component("/member/add.do")
@@ -19,7 +19,7 @@ public class MemberAddController implements Controller, DataBinding {
   
   public Object[] getDataBinders() {
     return new Object[]{
-        "member", spms.vo.Member.class
+        "member", com.example.app.Member.class
     };
   }
   

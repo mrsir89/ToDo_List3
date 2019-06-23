@@ -2,8 +2,8 @@ package com.example.app;
 
 import java.util.Map;
 
-import spms.annotation.Component;
-import spms.dao.MemberDao;
+import com.example.app.Component;
+import com.example.app.MemberDao;
 
 // Annotation 적용
 @Component("/member/list.do")

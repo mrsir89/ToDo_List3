@@ -4,10 +4,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import spms.annotation.Component;
-import spms.bind.DataBinding;
-import spms.dao.MemberDao;
-import spms.vo.Member;
+import com.example.app.Component;
+import com.example.app.DataBinding;
+import com.example.app.MemberDao;
+import com.example.app.Member;
 
 // Annotation 적용
 @Component("/auth/login.do")
@@ -21,7 +21,7 @@ public class LogInController implements Controller, DataBinding {
   
   public Object[] getDataBinders() {
     return new Object[]{
-        "loginInfo", spms.vo.Member.class
+        "loginInfo", com.example.app.Member.class
     };
   }
   

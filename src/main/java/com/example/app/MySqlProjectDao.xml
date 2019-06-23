@@ -41,7 +41,8 @@
 		</choose>
 	</select>
 
-	
+
+
 	
 	<!-- project => spms.vo.Project의 별명
 		 title, content.... 은 프로퍼티

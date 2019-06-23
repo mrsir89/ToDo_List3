@@ -2,11 +2,11 @@ package com.example.app;
 
 import java.util.Map;
 
-import spms.annotation.Component;
-import spms.bind.DataBinding;
+import com.example.app.Component;
+import com.example.app.DataBinding;
 
-import spms.dao.ProjectDao;
-import spms.vo.Project;
+import com.example.app.ProjectDao;
+import com.example.app.Project;
 
 @Component("/project/update.do")
 public class ProjectUpdateController implements Controller, DataBinding {
@@ -20,7 +20,7 @@ public class ProjectUpdateController implements Controller, DataBinding {
   public Object[] getDataBinders() {
     return new Object[]{
         "no", Integer.class,
-        "project", spms.vo.Project.class
+        "project", com.example.app.Project.class
     };
   }
   

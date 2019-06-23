@@ -2,10 +2,10 @@ package com.example.app;
 
 import java.util.Map;
 
-import spms.annotation.Component;
-import spms.bind.DataBinding;
-import spms.controls.Controller;
-import spms.dao.ProjectDao;
+import com.example.app.Component;
+import com.example.app.DataBinding;
+import com.example.app.Controller;
+import com.example.app.ProjectDao;
 
 @Component("/project/delete.do")
 public class ProjectDeleteController implements Controller, DataBinding {

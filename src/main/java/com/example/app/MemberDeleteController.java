@@ -2,9 +2,9 @@ package com.example.app;
 
 import java.util.Map;
 
-import spms.annotation.Component;
-import spms.bind.DataBinding;
-import spms.dao.MemberDao;
+import com.example.app.Component;
+import com.example.app.DataBinding;
+import com.example.app.MemberDao;
 
 // Annotation 적용
 @Component("/member/delete.do")

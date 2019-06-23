@@ -2,10 +2,10 @@ package com.example.app;
 
 import java.util.Map;
 
-import spms.annotation.Component;
-import spms.bind.DataBinding;
-import spms.dao.ProjectDao;
-import spms.vo.Project;
+import com.example.app.Component;
+import com.example.app.DataBinding;
+import com.example.app.ProjectDao;
+import com.example.app.Project;
 
 @Component("/project/add.do")
 public class ProjectAddController implements Controller, DataBinding {
@@ -18,7 +18,7 @@ public class ProjectAddController implements Controller, DataBinding {
   
   public Object[] getDataBinders() {
     return new Object[]{
-        "project", spms.vo.Project.class
+        "project", com.example.app.Project.class
     };
   }
   

@@ -10,8 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import org.apache.ibatis.session.SqlSessionFactory;///////////////////////////////////
 
-import spms.annotation.Component;
-import spms.vo.Project;
+import com.example.app.Component;
+import com.example.app.Project;
 
 
 
